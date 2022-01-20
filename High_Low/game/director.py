@@ -46,7 +46,7 @@ class Director:
         """
 
         # stop game if player chooses
-        if self.is_playing == "n":
+        if self.is_playing == False:
             return
 
         #stop game of score is 0    
@@ -86,6 +86,7 @@ class Director:
         
         #stop game of score is 0    
         if self.score == 0:
+            self.is_playing = False
             return
 
         # check cards and assign points.
@@ -105,12 +106,13 @@ class Director:
             self (Director): An instance of Director.
         """
         # stop game if player chooses
-        if self.is_playing == "n":
+        if self.is_playing == False:
             return
 
         #stop game of score is 0    
         if self.score == 0:
-            return
+            self.is_playing = False
+            #return
 
         # print results
         print(f"Next card was: {self.card2}. Your score is: {self.score}")
@@ -120,4 +122,5 @@ class Director:
 
         # stop game if player chooses
         if self.is_playing == "n":
+            self.is_playing = False
             return
