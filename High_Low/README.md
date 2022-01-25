@@ -40,9 +40,8 @@ root                    (project root folder)
 
 ## Authors
 ---
+* Ray Hokanson (rayschurchstuff@gmail.com)
 * Gabriel Guerrero (josegabrielguerrero26@gmail.com)
-* Josh Wenzel (drldsboi23@gmail.com)
 * Matt Shannon (mshannon@cvent.com)
 * Nathan Ornaghi Kutomi (nkutomi@byui.edu)
-* Ray Hokanson (rayschurchstuff@gmail.com)
 * Pierre Aguirre (paguirre@byui.edu)

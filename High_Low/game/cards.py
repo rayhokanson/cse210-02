@@ -2,13 +2,10 @@ import random
 
 
 class Cards:
-    """A small cube with a different number of spots on each of its six sides.
-
-    The responsibility of Die is to keep track of the side facing up and calculate the points for 
-    it.
+    """The responsibility of Cards is to keep track of the card value.
    
     Attributes:
-        value (int): The number of spots on the side facing up.
+        value (int): The number value of the card drawn.
     """
 
     def __init__(self):
@@ -18,14 +15,12 @@ class Cards:
             self (Cards): An instance of Cards.
         """
         self.card = 0
-        #self.points = 0
 
     def Deal(self):
-        """Generates a new random value and calculates the points for the die.
+        """Generates a new random value and provides card amount.
         
         Args:
-            self (Die): An instance of Die.
+            self (card): An instance of Cards.
         """
         self.card = random.randint(1, 13)
-        #self.points = 50 if self.value == 5 else 100 if self.value == 1 else 0
 
