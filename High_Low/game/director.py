@@ -1,5 +1,11 @@
-from game.cards import Cards
+# Created on Jan 25, 2022 by:
+# * Ray Hokanson
+# * Gabriel Guerrero
+# * Matt Shannon
+# * Nathan Ornaghi Kutomi
+# * Pierre Aguirre
 
+from game.card import Card
 
 class Director:
     """A person who directs the game. 
@@ -31,6 +37,7 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
+        
         # Introduce Game
         print("\nHilo is a game in which the player guesses if the next card drawn by the dealer will be higher or lower than the previous one.\n")
         print("You start with 300 points")
@@ -54,15 +61,20 @@ class Director:
         """
 
         # prompt to play again
-        play_again = input("\nPlay again? [y/n] ")
+        play_again = ""
+        while not play_again in ('y','n'):
+            play_again = input("\nPlay again? [y/n] ")
+            if not play_again in ('y','n'):
+                print("\nYou should pick between y or n")
+            # stop game if player chooses
+            if play_again == "n":
+                print("\nGreat Game. Thanks for playing!\n")
+                self.is_playing = False
+                return
         self.is_playing = (play_again == "y")
-
-        # stop game if player chooses
-        if play_again == "n":
-            print("\nGreat Game. Thanks for playing!\n")
         
         # Create instance of card
-        card = Cards()
+        card = Card()
 
         # run deal to get card
         card.Deal()
@@ -80,9 +92,12 @@ class Director:
         print(f"\nThe card is: {self.card1}")
 
         # prompt for high or low
-        self.high_low = input("Higher or lower? [h/l] ")
-        
-        
+        self.high_low = ""
+
+        while not self.high_low in ('h','l'):
+            self.high_low = input("Higher or lower? [h/l] ")
+            if not self.high_low in ('h','l'):
+                print("\nYou should pick between h or l")
       
     def do_updates(self):
         """Updates the player's score.
@@ -118,6 +133,6 @@ class Director:
         print(f"\nNext card was: {self.card2}. Your score is: {self.score}")
         self.is_playing = (self.score > 0)
 
-        #stop game of score is 0
+        #stop game if score is 0 or less
         if self.score <= 0:
             print("\nGame Over. Thanks for playing!\n")

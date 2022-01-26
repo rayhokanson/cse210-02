@@ -1,7 +1,7 @@
 import random
 
 
-class Cards:
+class Card:
     """The responsibility of Cards is to keep track of the card value.
    
     Attributes:

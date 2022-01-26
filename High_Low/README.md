@@ -28,7 +28,7 @@ You can also run the program from an IDE like Visual Studio Code. Start your IDE
 The project files and folders are organized as follows:
 ```
 root                    (project root folder)
-+-- High_Low                (source code for game)
++-- High_Low            (source code for game)
   +-- game              (specific classes)
   +-- __main__.py       (program entry point)
 +-- README.md           (general info)
