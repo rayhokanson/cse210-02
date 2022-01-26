@@ -42,6 +42,6 @@ root                    (project root folder)
 ---
 * Ray Hokanson (rayschurchstuff@gmail.com)
 * Gabriel Guerrero (josegabrielguerrero26@gmail.com)
-* Matt Shannon (mshannon@cvent.com)
+* Matt Shannon (shannon.matt@outlook.com)
 * Nathan Ornaghi Kutomi (nkutomi@byui.edu)
 * Pierre Aguirre (paguirre@byui.edu)
