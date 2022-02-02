@@ -5,7 +5,9 @@
 # * Nathan Ornaghi Kutomi
 # * Pierre Aguirre
 
-from game.parachute import parachute
+from game.parachute import Parachute
+from game.word import Word
+from game.TerminalService import TerminalService
 
 class Director:
     """A person who directs the game. 
@@ -13,10 +15,10 @@ class Director:
     The responsibility of a Director is to control the sequence of play.
 
     Attributes:
-        card1 (int): first card
-        card2 (int): Second card
+        parachute (Parachute): display the parachute
+        word (Word): pick a random word
         is_playing (boolean): Whether or not the game is being played.
-        score (int): game score
+        terminal_service (TermianalService): get all the prompts
     """
 
     def __init__(self):
@@ -25,8 +27,66 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        self.card1 = 0
-        self.card2 = 0
+        self.parachute = Parachute()
+        self.word = Word()
         self.is_playing = True
-        self.score = 300
+        self.terminal_service = TerminalService()
+        self.guess = ""
 
+    def start_game(self):
+        """Starts the game by running the main game loop.
+        
+        Args:
+            self (Director): an instance of Director.
+        """
+    
+        # Introduce Game
+        print("\nJumper is a game in which the player seeks to solve a puzzle by guessing the letters of a secret word one at a time.")
+        print("Start guessing letters! Good Luck!")
+
+        # pick a random word 
+        self.word.pick_a_word()
+
+        # loop through game while self.is_playing is true.
+        while self.is_playing:
+            self.get_inputs()
+            self.do_updates()
+            # self.do_outputs()
+
+
+    def get_inputs(self):
+        """Ask the user for a letter.
+
+        Args:
+            self (Director): An instance of Director.
+        """
+
+        # print the whole parachute
+        self.parachute.print()
+
+
+        # ask for input
+        
+        self.guess = self.terminal_service.ask_guess()
+        # guess = "123"
+        # while not guess.isalpha(): 
+        #     guess = input("Guess a letter [a-z]: ")
+
+
+    def do_updates(self):
+        """Check if guess is correct
+
+        Args:
+            self (Director): An instance of Director.
+        """
+        pass
+
+
+
+    def do_outputs(self):
+        """Output the parachute, and the results from the guess
+
+        Args:
+            self (Director): An instance of Director.
+        """
+        pass
