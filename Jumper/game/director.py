@@ -32,6 +32,7 @@ class Director:
         self.is_playing = True
         self.terminal_service = TerminalService()
         self.guess = ""
+        self.lives = 4
 
     def start_game(self):
         """Starts the game by running the main game loop.
@@ -43,6 +44,9 @@ class Director:
         # Introduce Game
         print("\nJumper is a game in which the player seeks to solve a puzzle by guessing the letters of a secret word one at a time.")
         print("Start guessing letters! Good Luck!")
+
+        # prints out parachute glider
+        print(Parachute.glider[4 - self.lives])
 
         # pick a random word 
         self.word.pick_a_word()
@@ -60,17 +64,8 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-
-        # print the whole parachute
-        self.parachute.print()
-
-
         # ask for input
-        
         self.guess = self.terminal_service.ask_guess()
-        # guess = "123"
-        # while not guess.isalpha(): 
-        #     guess = input("Guess a letter [a-z]: ")
 
 
     def do_updates(self):
