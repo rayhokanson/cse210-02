@@ -17,7 +17,7 @@ Make sure you have Python 3.8.0 or newer installed and running on your machine. 
 ```
 python3 Jumper 
 ```
-You can also run the program from an IDE like Visual Studio Code. Start your IDE and open the project folder. Select the main module inside the hilo folder and click the "run" button.
+You can also run the program from an IDE like Visual Studio Code. Start your IDE and open the project folder. Select the main module inside the jumper folder and click the "run" button.
 
 ## Project Structure
 ---
