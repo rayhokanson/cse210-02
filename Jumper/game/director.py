@@ -27,12 +27,12 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        self.parachute = Parachute()
-        self.word = Word()
-        self.is_playing = True
-        self.terminal_service = TerminalService()
-        self.guess = ""
-        self.lives = 4
+        self._parachute = Parachute()
+        self._word = Word()
+        self._is_playing = True
+        self._terminal_service = TerminalService()
+        self._guess = ""
+        self._lives = 4
 
     def start_game(self):
         """Starts the game by running the main game loop.
