@@ -46,7 +46,7 @@ class Director:
         print("Start guessing letters! Good Luck!")
 
         # prints out parachute glider
-        print(Parachute.glider[4 - self.lives])
+        self.parachute.print_parachute()
 
         # pick a random word 
         self.word.pick_a_word()
@@ -65,7 +65,7 @@ class Director:
             self (Director): An instance of Director.
         """
         # ask for input
-        self.guess = self.terminal_service.ask_guess()
+        self.guess = self.terminal_service.ask_guess("\nGuess a letter [a-z]: ")
 
 
     def do_updates(self):
@@ -74,7 +74,7 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        pass
+        self.parachute.remove_parachute_piece()
 
 
 

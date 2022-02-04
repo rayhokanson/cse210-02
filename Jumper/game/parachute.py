@@ -1,45 +1,24 @@
+from game.TerminalService import TerminalService
+
 class Parachute:
-    glider = {
-        0: """
-            ___  
-           /___\ 
-           \   / 
-            \ /  
-             0   
-            /|\  
-            / \  
-        """,
+    def __init__(self):
+        self.terminalService = TerminalService()
+        self.glider = [
+        '     ___  ',
+        '    /___\ ',
+        '    \   / ',
+        '     \ /  ',
+        '      0   ',
+        '     /|\  ',
+        '     / \  '
 
-        1: """
-        
-           /___\ 
-           \   / 
-            \ /  
-             0   
-            /|\  
-            / \  
-        """,
+        ]
 
-        2: """
+    def print_parachute(self):
+        for i in self.glider:
+            self.terminalService.write_text(i)
 
-           \   / 
-            \ /  
-             0   
-            /|\  
-            / \  
-        """,
+    def remove_parachute_piece(self):
+        self.glider.pop(0)
 
-        3: """
-
-            \ /  
-             0   
-            /|\  
-            / \  
-        """,
-
-        4: """
-        
-             x   
-            /|\  
-            / \  
-        """}
+    # check if they have parachute
