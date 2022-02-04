@@ -32,7 +32,6 @@ class Director:
         self._is_playing = True
         self._terminal_service = TerminalService()
         self._guess = ""
-        self._lives = 4
 
     def start_game(self):
         """Starts the game by running the main game loop.
@@ -46,13 +45,13 @@ class Director:
         print("Start guessing letters! Good Luck!")
 
         # prints out parachute glider
-        self.parachute.print_parachute()
+        self._parachute.print_parachute()
 
         # pick a random word 
-        self.word.pick_a_word()
+        self._word.pick_a_word()
 
         # loop through game while self.is_playing is true.
-        while self.is_playing:
+        while self._is_playing:
             self.get_inputs()
             self.do_updates()
             # self.do_outputs()
@@ -65,7 +64,7 @@ class Director:
             self (Director): An instance of Director.
         """
         # ask for input
-        self.guess = self.terminal_service.ask_guess("\nGuess a letter [a-z]: ")
+        self._guess = self._terminal_service.ask_guess("\nGuess a letter [a-z]: ")
 
 
     def do_updates(self):
@@ -74,7 +73,7 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        self.parachute.remove_parachute_piece()
+        self._parachute.remove_parachute_piece()
 
 
 
