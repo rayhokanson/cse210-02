@@ -37,3 +37,7 @@ class TerminalService:
             text (string): The text to display.
         """
         print(text)
+
+    def write_text_no_new_line(self, text): # Ray from meeting
+        # RH print where letters are displayed without line breaks.
+        print(text, end="")
