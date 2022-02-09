@@ -12,7 +12,7 @@ class Parachute:
         '     /|\  ',
         '     / \  ',
         '',
-        '^^^^^^^'
+        '   ^^^^^^^'
         ]
 
     def print_parachute(self):
