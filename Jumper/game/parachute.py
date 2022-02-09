@@ -29,4 +29,3 @@ class Parachute:
 
     def parachute_gone(self):
         self._glider[0] = "      X"
-
