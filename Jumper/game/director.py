@@ -45,16 +45,16 @@ class Director:
         print("Start guessing letters! Good Luck!")
 
         # prints out parachute glider
-        self._parachute.print_parachute()
+        # self._parachute.print_parachute()
 
         # pick a random word 
-        self._word.pick_a_word()
+        # self._word.pick_a_word()
 
         # loop through game while self.is_playing is true.
         while self._is_playing:
+            self.do_outputs()
             self.get_inputs()
             self.do_updates()
-            # self.do_outputs()
 
 
     def get_inputs(self):
@@ -65,6 +65,9 @@ class Director:
         """
         # ask for input
         self._guess = self._terminal_service.ask_guess("\nGuess a letter [a-z]: ")
+        
+       
+
 
 
     def do_updates(self):
@@ -73,7 +76,37 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        self._parachute.remove_parachute_piece()
+        # word_guess = "_____"
+        # current_word = self._word.get_current_word()
+        guess = self._guess
+        if self._word.check_letter(guess):
+            if self._word.check_word():
+                self._is_playing = False
+                print("You win!!!")
+        else:
+            self._parachute.remove_parachute_piece()
+            if not self._parachute.has_parachute():
+                self._parachute.parachute_gone()
+                self._parachute.print_parachute()
+                self._is_playing = False
+                print("You lost! That's a bummer...")
+
+        # if guess in current_word:
+        #     print(True)
+        #     guess_index = current_word.index(guess) # 1
+        #     print(guess_index)
+
+        #     new = list(word_guess)
+        #     new[guess_index] = guess    
+        #     word_guess = ''.join(new)
+
+        #     # word_guess[:guess_index].replace("_", guess)
+        #     print(word_guess)
+
+        # print(word_guess)
+
+
+
 
 
 
@@ -83,4 +116,5 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        pass
+        self._parachute.print_parachute()
+        self._word.draw_word_guess()
