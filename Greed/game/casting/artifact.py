@@ -1,4 +1,6 @@
 from game.casting.actor import Actor
+from game.shared.point import Point
+import random
 
 
 class Artifact(Actor):
@@ -13,6 +15,10 @@ class Artifact(Actor):
     def __init__(self):
         super().__init__()
         self._message = ""
+        self._type = random.choice([True, False])
+        self._text = "*" if self._type == True else "O"
+        self._velocity = Point(0, 3)
+
         
     def get_message(self):
         """Gets the artifact's message.
@@ -29,3 +35,11 @@ class Artifact(Actor):
             message (string): The given message.
         """
         self._message = message
+
+    def get_type(self):
+        """Gets the artifact's type.
+        
+        Returns:
+            boolean: The type.
+        """
+        return self._type
