@@ -65,9 +65,7 @@ class Director:
                     self._player_score += 1
                 else:
                     self._player_score -= 1
-                
                 cast.remove_actor("artifacts", artifact)
-
         banner.set_text(f"Your score is {self._player_score}")
         
     def _do_outputs(self, cast):
