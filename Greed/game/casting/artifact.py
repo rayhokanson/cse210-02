@@ -1,7 +1,7 @@
 from game.casting.actor import Actor
 from game.shared.point import Point
+from game.shared.color import Color
 import random
-
 
 class Artifact(Actor):
     """
@@ -43,3 +43,19 @@ class Artifact(Actor):
             boolean: The type.
         """
         return self._type
+
+    def set_new_coordinates(self):
+        r = random.randint(0, 255)
+        g = random.randint(0, 255)
+        b = random.randint(0, 255)
+        color = Color(r, g, b)
+
+        self.set_color(color)
+
+        COLS = 30
+        CELL_SIZE = 30
+        x = random.randint(1, COLS - 1)
+        y = 0
+        position = Point(x, y)
+        position = position.scale(CELL_SIZE)
+        self.set_position(position)
