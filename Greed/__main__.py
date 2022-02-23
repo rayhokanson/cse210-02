@@ -17,11 +17,11 @@ from game.shared.point import Point
 FRAME_RATE = 12
 MAX_X = 900
 MAX_Y = 600
-CELL_SIZE = 30
-FONT_SIZE = 30
-COLS = 30
-ROWS = 20
-CAPTION = "Greed Game"
+CELL_SIZE = 30 # Increased the size of the cell to make the game easier to see
+FONT_SIZE = 30 # Increased the size of the font to make the game easier to see
+COLS = 30 # Changed to match the new cell size.
+ROWS = 20 # Changed to match the new cell size.
+CAPTION = "Greed Game" # Changed game banner
 WHITE = Color(255, 255, 255)
 DEFAULT_ARTIFACTS = 40
 
@@ -41,7 +41,7 @@ def main():
     
     # create the robot
     x = int(MAX_X / 2)
-    y = int(MAX_Y - 30)
+    y = int(MAX_Y - 45) # Move robot starting position up from the bottom of the screen.
     position = Point(x, y)
 
     robot = Actor()
@@ -52,6 +52,7 @@ def main():
     cast.add_actor("robots", robot)
     
     # create the artifacts
+    # Removed file access code.
 
     for n in range(DEFAULT_ARTIFACTS):
 
@@ -65,6 +66,7 @@ def main():
         b = random.randint(0, 255)
         color = Color(r, g, b)
         
+        # Removed message artifact code.
         artifact = Artifact()
         artifact.set_font_size(FONT_SIZE)
         artifact.set_color(color)

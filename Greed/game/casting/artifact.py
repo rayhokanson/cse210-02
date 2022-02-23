@@ -1,41 +1,26 @@
 from game.casting.actor import Actor
+
+# Imported these for the game.
 from game.shared.point import Point
 from game.shared.color import Color
 import random
 
 class Artifact(Actor):
     """
-    An item of cultural or historical interest. 
+    An item for gem and rock. 
     
-    The responsibility of an Artifact is to provide a message about itself.
-
-    Attributes:
-        _message (string): A short description about the artifact.
     """
+    
     def __init__(self):
+        """
+        The constructor for artifact
+        """
         super().__init__()
-        self._message = ""
         self._type = random.choice([True, False])
         self._text = "*" if self._type == True else "O"
         self._velocity = Point(0, 3)
 
-        
-    def get_message(self):
-        """Gets the artifact's message.
-        
-        Returns:
-            string: The message.
-        """
-        return self._message
     
-    def set_message(self, message):
-        """Updates the message to the given one.
-        
-        Args:
-            message (string): The given message.
-        """
-        self._message = message
-
     def get_type(self):
         """Gets the artifact's type.
         
@@ -45,6 +30,9 @@ class Artifact(Actor):
         return self._type
 
     def set_new_coordinates(self):
+        """Sets new coordinates and color for
+           removed artifact.
+        """
         r = random.randint(0, 255)
         g = random.randint(0, 255)
         b = random.randint(0, 255)

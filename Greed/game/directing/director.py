@@ -17,7 +17,7 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
-        self._player_score = 0
+        self._player_score = 0 # Initiated points to 0
         
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -55,18 +55,18 @@ class Director:
         banner.set_text("")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
-        robot.move_next(max_x, max_y)
+        robot.move_next(max_x, max_y) 
         
-        
+        # This for loop was added to move artifacts and check to see if robot hits aritfacts
+        # And also increments and displays score.
         for artifact in artifacts:
-            artifact.move_next(max_x, max_y)
+            artifact.move_next(max_x, max_y) # Added to enable to artifacts to move down screen.
             if robot.get_position().equals(artifact.get_position()):
                 if artifact.get_type() == True:
                     self._player_score += 1
                 else:
                     self._player_score -= 1
                 artifact.set_new_coordinates()
-                # cast.remove_actor("artifacts", artifact)
         banner.set_text(f"Your score is {self._player_score}")
         
     def _do_outputs(self, cast):
