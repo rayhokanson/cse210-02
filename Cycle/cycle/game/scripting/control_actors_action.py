@@ -5,9 +5,9 @@ from game.shared.point import Point
 
 class ControlActorsAction(Action):
     """
-    An input action that controls the snake.
+    An input action that controls the cycle.
     
-    The responsibility of ControlActorsAction is to get the direction and move the snake's head.
+    The responsibility of ControlActorsAction is to get the direction and move the cycle's head.
 
     Attributes:
         _keyboard_service (KeyboardService): An instance of KeyboardService.
@@ -20,7 +20,7 @@ class ControlActorsAction(Action):
             keyboard_service (KeyboardService): An instance of KeyboardService.
         """
         self._keyboard_service = keyboard_service
-        self._direction1 = Point(constants.CELL_SIZE, 0) #directions for cyle 1
+        self._direction1 = Point(constants.CELL_SIZE, 0) #directions for cycle 1
         self._direction2 = Point(constants.CELL_SIZE, 0) #directions for cycle 2
 
     def execute(self, cast, script):
