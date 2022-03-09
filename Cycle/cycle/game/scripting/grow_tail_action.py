@@ -3,24 +3,19 @@ from game.scripting.action import Action
 
 class GrowTailAction(Action):
     """
-    An output action that draws all the actors.
+    An update action that keeps tails growing.
     
-    The responsibility of GrowTailAction is to draw all the actors.
-
-    Attributes:
-        _video_service (VideoService): An instance of VideoService.
+    The responsibility of GrowTailAction is to grow cycles tails.
     """
 
     def __init__(self):
-        """Constructs a new GrowTailAction using the specified VideoService.
-        
-        Args:
-            video_service (VideoService): An instance of VideoService.
+        """
+        Constructs a new GrowTailAction.
         """
         self._times = 0 #added timer
 
     def execute(self, cast, script):
-        """Executes the draw actors action.
+        """Executes the grow cycles tails.
 
         Args:
             cast (Cast): The cast of Actors in the game.

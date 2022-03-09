@@ -8,9 +8,6 @@ class Cycle(Actor): # Replaced Snake with Cycle
     Motorcycles with tails that can't be crossed.
     
     The responsibility of Cycle is to move itself.
-
-    Attributes:
-        _points (int): The number of points the food is worth.
     """
     def __init__(self, color): # Added color
         super().__init__()
@@ -46,7 +43,6 @@ class Cycle(Actor): # Replaced Snake with Cycle
             segment.set_position(position)
             segment.set_velocity(velocity)
             segment.set_text("#")
-            #segment.set_color(constants.GREEN) # Don't change color for tail
             segment.set_color(self._cycle_color) # set cycle color
             self._segments.append(segment)
 

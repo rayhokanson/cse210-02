@@ -1,6 +1,3 @@
-from ast import And
-from game.scripting.grow_tail_action import GrowTailAction
-from game.scripting.script import Script
 import constants
 from game.casting.actor import Actor
 from game.scripting.action import Action
@@ -10,8 +7,8 @@ class HandleCollisionsAction(Action):
     """
     An update action that handles interactions between the actors.
     
-    The responsibility of HandleCollisionsAction is to handle the situation when the snake collides
-    with the food, or the snake collides with its segments, or the game is over.
+    The responsibility of HandleCollisionsAction is to handle the situation when the cycles collide
+    with its segments, or the game is over.
 
     Attributes:
         _is_game_over (boolean): Whether or not the game is over.
@@ -30,14 +27,10 @@ class HandleCollisionsAction(Action):
         """
         if not self._is_game_over:
             self._handle_segment_collision(cast)
-            self._handle_game_over(cast)
-        else:
-            script.remove_action("update", GrowTailAction())
-    
-    # Removed _handle_food_collision
+            self._handle_game_over(cast, script)
 
     def _handle_segment_collision(self, cast):
-        """Sets the game over flag if the snake collides with one of its segments.
+        """Sets the game over flag if the cycle collides with one of its segments.
         
         Args:
             cast (Cast): The cast of Actors in the game.
@@ -66,8 +59,8 @@ class HandleCollisionsAction(Action):
                 self._is_game_over = True
         
         
-    def _handle_game_over(self, cast):
-        """Shows the 'game over' message and turns the snake and food white if the game is over.
+    def _handle_game_over(self, cast, script):
+        """Shows the 'game over' message and turns the cycles white if the game is over.
         
         Args:
             cast (Cast): The cast of Actors in the game.
@@ -76,8 +69,7 @@ class HandleCollisionsAction(Action):
             cycles = cast.get_actors("cycles")
             cycle1 = cycles[0]
             cycle2 = cycles[1]
-            script = Script()
-            
+
             segments1 = cycle1.get_segments()
             segments2 = cycle2.get_segments()
 
@@ -95,3 +87,6 @@ class HandleCollisionsAction(Action):
 
             for segment in segments2:
                 segment.set_color(constants.WHITE)
+
+            growTailAction = script.get_actions("update")[1]
+            script.remove_action("update", growTailAction)
