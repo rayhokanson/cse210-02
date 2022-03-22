@@ -71,14 +71,14 @@ while carryOn:
     #Check if the ball is bouncing against any of the 4 walls:
     if ball.rect.x >= 690:
         scoreA += 1
-        ball.velocity[0] = -ball.velocity[0]
+        ball._velocity[0] = -ball._velocity[0]
     if ball.rect.x <= 0:
         scoreB += 1
-        ball.velocity[0] = -ball.velocity[0]
+        ball._velocity[0] = -ball._velocity[0]
     if ball.rect.y > 490:
-        ball.velocity[1] = -ball.velocity[1]
+        ball._velocity[1] = -ball._velocity[1]
     if ball.rect.y < 0:
-        ball.velocity[1] = -ball.velocity[1]
+        ball._velocity[1] = -ball._velocity[1]
 
     #Detect collisions between the ball and the paddles
     if pygame.sprite.collide_mask(ball, paddleA) or pygame.sprite.collide_mask(ball, paddleB):
