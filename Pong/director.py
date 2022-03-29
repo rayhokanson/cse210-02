@@ -44,11 +44,33 @@ class Director:
         # The clock will be used to control how fast the screen updates
         self._clock = pygame.time.Clock()
 
+        self._scoreA = 0
+        self._scoreB = 0
+
+    def score(self):
+        
+        if self._ball.rect.x >= 690:
+            self._scoreA += 1
+            self._ball._velocity[0] = -self._ball._velocity[0]
+        if self._ball.rect.x <= 0:
+            self._scoreB += 1
+            self._ball._velocity[0] = -self._ball._velocity[0]
+        if self._ball.rect.y > 490:
+            self._ball._velocity[1] = -self._ball._velocity[1]
+        if self._ball.rect.y < 0:
+            self._ball._velocity[1] = -self._ball._velocity[1]
+
+    def displayScore(self):
+        font = pygame.font.Font(None, 74)
+        text = font.render(str(self._scoreA), 1, self._WHITE)
+        self._screen.blit(text, (250, 10))
+        text = font.render(str(self._scoreB), 1, self._WHITE)
+        self._screen.blit(text, (420, 10))
+
     def start_game(self):
     # -------- Main Program Loop -----------
         carryOn = True
-        scoreA = 0
-        scoreB = 0
+
         while carryOn:
             # --- Main event loop
             for event in pygame.event.get():  # User did something
@@ -58,7 +80,7 @@ class Director:
                     if event.key == pygame.K_x:  # Pressing the x Key will quit the game
                         carryOn = False
 
-            #Moving the paddles when the use uses the arrow keys (player A) or "W/S" keys (player B)
+            #Moving the paddles when the user uses the arrow keys (player A) or "W/S" keys (player B)
             keys = pygame.key.get_pressed()
             if keys[pygame.K_w]:
                 self._paddleA.moveUp(5)
@@ -72,17 +94,7 @@ class Director:
             # --- Game logic should go here
             self._all_sprites_list.update()
 
-            #Check if the ball is bouncing against any of the 4 walls:
-            if self._ball.rect.x >= 690:
-                scoreA += 1
-                self._ball._velocity[0] = -self._ball._velocity[0]
-            if self._ball.rect.x <= 0:
-                scoreB += 1
-                self._ball._velocity[0] = -self._ball._velocity[0]
-            if self._ball.rect.y > 490:
-                self._ball._velocity[1] = -self._ball._velocity[1]
-            if self._ball.rect.y < 0:
-                self._ball._velocity[1] = -self._ball._velocity[1]
+            self.score()
 
             #Detect collisions between the ball and the paddles
             if pygame.sprite.collide_mask(self._ball, self._paddleA) or pygame.sprite.collide_mask(self._ball, self._paddleB):
@@ -98,12 +110,7 @@ class Director:
             #Now let's draw all the sprites in one go. (For now we only have 2 sprites!)
             self._all_sprites_list.draw(self._screen)
 
-            #Display scores:
-            font = pygame.font.Font(None, 74)
-            text = font.render(str(scoreA), 1, self._WHITE)
-            self._screen.blit(text, (250, 10))
-            text = font.render(str(scoreB), 1, self._WHITE)
-            self._screen.blit(text, (420, 10))
+            self.displayScore()
 
             # --- Go ahead and update the screen with what we've drawn.
             pygame.display.flip()
