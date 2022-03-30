@@ -70,8 +70,8 @@ class SceneManager:
     def prepare_scene(self, scene, cast, script):
         if scene == NEW_GAME:
             self._prepare_new_game(cast, script)
-        # elif scene == NEXT_LEVEL:
-        #     self._prepare_next_level(cast, script)
+        elif scene == NEXT_LEVEL:
+            self._prepare_next_level(cast, script)
         elif scene == TRY_AGAIN:
             self._prepare_try_again(cast, script)
         elif scene == IN_PLAY:
@@ -85,14 +85,12 @@ class SceneManager:
     
     def _prepare_new_game(self, cast, script):
         self._add_stats(cast)
-        # self._add_level(cast)
-        self._add_score1(cast)
-        self._add_score2(cast)
+        self._add_level(cast)
+        self._add_lives(cast)
+        self._add_score(cast)
         self._add_ball(cast)
-        # self._add_bricks(cast)
-        self._add_racket1(cast)
-        self._add_racket2(cast)
-
+        self._add_bricks(cast)
+        self._add_racket(cast)
         self._add_dialog(cast, ENTER_TO_START)
 
         self._add_initialize_script(script)
@@ -103,21 +101,20 @@ class SceneManager:
         self._add_unload_script(script)
         self._add_release_script(script)
         
-    # def _prepare_next_level(self, cast, script):
-    #     self._add_ball(cast)
-    #     self._add_bricks(cast)
-    #     self._add_racket(cast)
-    #     self._add_dialog(cast, PREP_TO_LAUNCH)
-    #
-    #     script.clear_actions(INPUT)
-    #     script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
-    #     self._add_output_script(script)
-    #     script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
+    def _prepare_next_level(self, cast, script):
+        self._add_ball(cast)
+        self._add_bricks(cast)
+        self._add_racket(cast)
+        self._add_dialog(cast, PREP_TO_LAUNCH)
+
+        script.clear_actions(INPUT)
+        script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
+        self._add_output_script(script)
+        script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
         
     def _prepare_try_again(self, cast, script):
         self._add_ball(cast)
-        self._add_racket1(cast)
-        self._add_racket2(cast)
+        self._add_racket(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 
         script.clear_actions(INPUT)
@@ -136,8 +133,7 @@ class SceneManager:
 
     def _prepare_game_over(self, cast, script):
         self._add_ball(cast)
-        self._add_racket1(cast)
-        self._add_racket2(cast)
+        self._add_racket(cast)
         self._add_dialog(cast, WAS_GOOD_GAME)
 
         script.clear_actions(INPUT)
@@ -156,8 +152,7 @@ class SceneManager:
     def _add_ball(self, cast):
         cast.clear_actors(BALL_GROUP)
         x = CENTER_X - BALL_WIDTH / 2
-        # y = SCREEN_HEIGHT - RACKET_HEIGHT - BALL_HEIGHT
-        y = CENTER_Y - BALL_HEIGHT/2
+        y = SCREEN_HEIGHT - RACKET_HEIGHT - BALL_HEIGHT  
         position = Point(x, y)
         size = Point(BALL_WIDTH, BALL_HEIGHT)
         velocity = Point(0, 0)
@@ -206,61 +201,43 @@ class SceneManager:
         label = Label(text, position)
         cast.add_actor(DIALOG_GROUP, label)
 
-    def _add_score1(self, cast):
-        cast.clear_actors(SCORE1_GROUP)
-        text = Text(SCORE1_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_LEFT)
+    def _add_level(self, cast):
+        cast.clear_actors(LEVEL_GROUP)
+        text = Text(LEVEL_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_LEFT)
         position = Point(HUD_MARGIN, HUD_MARGIN)
         label = Label(text, position)
-        cast.add_actor(SCORE1_GROUP, label)
+        cast.add_actor(LEVEL_GROUP, label)
 
-    # def _add_lives(self, cast):
-    #     cast.clear_actors(LIVES_GROUP)
-    #     text = Text(LIVES_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_RIGHT)
-    #     # position = Point(CENTER_X, HUD_MARGIN)
-    #     # position = Point(SCREEN_WIDTH - HUD_MARGIN, HUD_MARGIN)
-    #     label = Label(text, position)
-    #     cast.add_actor(LIVES_GROUP, label)
-
-    def _add_score2(self, cast):
-        cast.clear_actors(SCORE2_GROUP)
-        text = Text(SCORE2_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
-        # position = Point(CENTER_X, HUD_MARGIN)
+    def _add_lives(self, cast):
+        cast.clear_actors(LIVES_GROUP)
+        text = Text(LIVES_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_RIGHT)
         position = Point(SCREEN_WIDTH - HUD_MARGIN, HUD_MARGIN)
         label = Label(text, position)
-        cast.add_actor(SCORE2_GROUP, label)
+        cast.add_actor(LIVES_GROUP, label)
+
+    def _add_score(self, cast):
+        cast.clear_actors(SCORE_GROUP)
+        text = Text(SCORE_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
+        position = Point(CENTER_X, HUD_MARGIN)
+        label = Label(text, position)
+        cast.add_actor(SCORE_GROUP, label)
 
     def _add_stats(self, cast):
         cast.clear_actors(STATS_GROUP)
         stats = Stats()
         cast.add_actor(STATS_GROUP, stats)
 
-    def _add_racket1(self, cast):
-        cast.clear_actors(RACKET1_GROUP)
-        # x = CENTER_X - RACKET1_WIDTH / 2
-        # y = SCREEN_HEIGHT - RACKET1_HEIGHT
-        x = RACKET1_WIDTH / 2
-        y = CENTER_Y - RACKET1_HEIGHT / 2
+    def _add_racket(self, cast):
+        cast.clear_actors(RACKET_GROUP)
+        x = CENTER_X - RACKET_WIDTH / 2
+        y = SCREEN_HEIGHT - RACKET_HEIGHT
         position = Point(x, y)
-        size = Point(RACKET1_WIDTH, RACKET1_HEIGHT)
+        size = Point(RACKET_WIDTH, RACKET_HEIGHT)
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
-        animation = Animation(RACKET1_IMAGES, RACKET1_RATE)
+        animation = Animation(RACKET_IMAGES, RACKET_RATE)
         racket = Racket(body, animation)
-        cast.add_actor(RACKET1_GROUP, racket)
-
-    def _add_racket2(self, cast):
-        cast.clear_actors(RACKET2_GROUP)
-        # x = CENTER_X - RACKET2_WIDTH / 2
-        # y = SCREEN_HEIGHT - RACKET2_HEIGHT
-        x = SCREEN_WIDTH - RACKET2_WIDTH / 2
-        y = CENTER_Y - RACKET2_HEIGHT / 2
-        position = Point(x, y)
-        size = Point(RACKET2_WIDTH, RACKET2_HEIGHT)
-        velocity = Point(0, 0)
-        body = Body(position, size, velocity)
-        animation = Animation(RACKET2_IMAGES, RACKET2_RATE)
-        racket = Racket(body, animation)
-        cast.add_actor(RACKET2_GROUP, racket)
+        cast.add_actor(RACKET_GROUP, racket)
 
     # ----------------------------------------------------------------------------------------------
     # scripting methods
@@ -278,7 +255,7 @@ class SceneManager:
         script.add_action(OUTPUT, self.START_DRAWING_ACTION)
         script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
         script.add_action(OUTPUT, self.DRAW_BALL_ACTION)
-        # script.add_action(OUTPUT, self.DRAW_BRICKS_ACTION)
+        script.add_action(OUTPUT, self.DRAW_BRICKS_ACTION)
         script.add_action(OUTPUT, self.DRAW_RACKET_ACTION)
         script.add_action(OUTPUT, self.DRAW_DIALOG_ACTION)
         script.add_action(OUTPUT, self.END_DRAWING_ACTION)
