@@ -18,8 +18,8 @@ class MoveRacketsAction(Action):
         
         position1 = position1.add(velocity1)
 
-        if y1 < 30:
-            position1 = Point(position1.get_x(), 30)
+        if y1 < 60:
+            position1 = Point(position1.get_x(), 60)
         elif y1 > (SCREEN_HEIGHT - RACKET1_HEIGHT):
             position1 = Point(position1.get_x(), SCREEN_HEIGHT - RACKET1_HEIGHT)
             
@@ -34,8 +34,8 @@ class MoveRacketsAction(Action):
 
         position2 = position2.add(velocity2)
 
-        if y2 < 0:
-            position2 = Point(0, position2.get_y())
+        if y2 < 60:
+            position2 = Point(position2.get_x(), 60)
         elif y2 > (SCREEN_HEIGHT - RACKET2_HEIGHT):
             position2 = Point(position2.get_x(), SCREEN_HEIGHT - RACKET2_HEIGHT)
 

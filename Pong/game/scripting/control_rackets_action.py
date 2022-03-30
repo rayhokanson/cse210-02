@@ -2,7 +2,7 @@ from constants import *
 from game.scripting.action import Action
 
 
-class ControlRacketAction(Action):
+class ControlRacketsAction(Action):
 
     def __init__(self, keyboard_service):
         self._keyboard_service = keyboard_service
