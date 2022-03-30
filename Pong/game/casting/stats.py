@@ -38,7 +38,7 @@ class Stats(Actor):
         if player == 1:
             return self._score1
         elif player == 2:
-            return self._score1
+            return self._score2
 
 
     def reset(self):

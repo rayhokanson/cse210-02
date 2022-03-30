@@ -300,4 +300,4 @@ class SceneManager:
         # script.add_action(UPDATE, self.COLLIDE_BRICKS_ACTION)
         script.add_action(UPDATE, self.COLLIDE_RACKETS_ACTION)
         script.add_action(UPDATE, self.MOVE_RACKETS_ACTION)
-        script.add_action(UPDATE, self.CHECK_OVER_ACTION)
+        # script.add_action(UPDATE, self.CHECK_OVER_ACTION)

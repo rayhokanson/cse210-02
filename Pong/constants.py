@@ -15,7 +15,8 @@ CENTER_X = SCREEN_WIDTH / 2
 CENTER_Y = SCREEN_HEIGHT / 2
 
 # FIELD
-FIELD_TOP = 60
+# FIELD_TOP = 60
+FIELD_TOP = 0
 FIELD_BOTTOM = SCREEN_HEIGHT
 FIELD_LEFT = 0
 FIELD_RIGHT = SCREEN_WIDTH
@@ -29,6 +30,7 @@ FONT_LARGE = 48
 BOUNCE_SOUND = "../Pong/assets/sounds/boing.wav"
 WELCOME_SOUND = "../Pong/assets/sounds/start.wav"
 OVER_SOUND = "../Pong/assets/sounds/over.wav"
+WIN_SOUND = "../Pong/assets/sounds/win.wav"
 
 # TEXT
 ALIGN_CENTER = 0
@@ -88,13 +90,13 @@ MAXIMUM_LIVES = 5
 
 # HUD
 HUD_MARGIN = 15
-SCORE2_MARGIN = 150
+SCORE2_MARGIN = 80
 # LIVES_GROUP = "lives"
 # LIVES_FORMAT = "LIVES: {}"
 SCORE1_GROUP = "score1"
 SCORE2_GROUP = "score2"
-SCORE1_FORMAT = "SCORE1: {}"
-SCORE2_FORMAT = "SCORE2: {}"
+SCORE1_FORMAT = "SCORE: {}"
+SCORE2_FORMAT = "SCORE: {}"
 
 # BALL
 BALL_GROUP = "balls"
@@ -109,7 +111,7 @@ RACKET1_IMAGES = [f"../Pong/assets/images/{n:03}.png" for n in range(103, 106)]
 RACKET1_WIDTH = 28 # 106
 RACKET1_HEIGHT = 106 # 28
 RACKET1_RATE = 6
-RACKET1_VELOCITY = 7
+RACKET_VELOCITY = 7
 
 # RACKET2
 RACKET2_GROUP = "racket2"
@@ -117,7 +119,7 @@ RACKET2_IMAGES = [f"../Pong/assets/images/{n:03}.png" for n in range(106, 109)]
 RACKET2_WIDTH = 28 # 106
 RACKET2_HEIGHT = 106 # 28
 RACKET2_RATE = 6
-RACKET2_VELOCITY = 7
+# RACKET_VELOCITY = 7
 
 # BRICK
 BRICK_GROUP = "bricks"
