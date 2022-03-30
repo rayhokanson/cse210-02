@@ -20,7 +20,7 @@ from game.scripting.draw_ball_action import DrawBallAction
 from game.scripting.draw_bricks_action import DrawBricksAction
 from game.scripting.draw_dialog_action import DrawDialogAction
 from game.scripting.draw_hud_action import DrawHudAction
-from game.scripting.draw_racket_action import DrawRacketAction
+from game.scripting.draw_rackets_action import DrawRacketsAction
 from game.scripting.end_drawing_action import EndDrawingAction
 from game.scripting.initialize_devices_action import InitializeDevicesAction
 from game.scripting.load_assets_action import LoadAssetsAction
@@ -54,7 +54,7 @@ class SceneManager:
     DRAW_BRICKS_ACTION = DrawBricksAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
-    DRAW_RACKET_ACTION= DrawRacketAction(VIDEO_SERVICE)
+    DRAW_RACKET_ACTION= DrawRacketsAction(VIDEO_SERVICE)
     END_DRAWING_ACTION = EndDrawingAction(VIDEO_SERVICE)
     INITIALIZE_DEVICES_ACTION = InitializeDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     LOAD_ASSETS_ACTION = LoadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
@@ -70,8 +70,8 @@ class SceneManager:
     def prepare_scene(self, scene, cast, script):
         if scene == NEW_GAME:
             self._prepare_new_game(cast, script)
-        # elif scene == NEXT_LEVEL:
-        #     self._prepare_next_level(cast, script)
+        elif scene == NEXT_LEVEL:
+            self._prepare_next_level(cast, script)
         elif scene == TRY_AGAIN:
             self._prepare_try_again(cast, script)
         elif scene == IN_PLAY:
@@ -103,16 +103,17 @@ class SceneManager:
         self._add_unload_script(script)
         self._add_release_script(script)
         
-    # def _prepare_next_level(self, cast, script):
-    #     self._add_ball(cast)
-    #     self._add_bricks(cast)
-    #     self._add_racket(cast)
-    #     self._add_dialog(cast, PREP_TO_LAUNCH)
-    #
-    #     script.clear_actions(INPUT)
-    #     script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
-    #     self._add_output_script(script)
-    #     script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
+    def _prepare_next_level(self, cast, script):
+        self._add_ball(cast)
+        # self._add_bricks(cast)
+        self._add_racket1(cast)
+        self._add_racket2(cast)
+        self._add_dialog(cast, PREP_TO_LAUNCH)
+
+        script.clear_actions(INPUT)
+        script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
+        self._add_output_script(script)
+        script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
         
     def _prepare_try_again(self, cast, script):
         self._add_ball(cast)
@@ -225,7 +226,7 @@ class SceneManager:
         cast.clear_actors(SCORE2_GROUP)
         text = Text(SCORE2_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
         # position = Point(CENTER_X, HUD_MARGIN)
-        position = Point(SCREEN_WIDTH - HUD_MARGIN, HUD_MARGIN)
+        position = Point(SCREEN_WIDTH - SCORE2_MARGIN, HUD_MARGIN)
         label = Label(text, position)
         cast.add_actor(SCORE2_GROUP, label)
 
@@ -252,7 +253,7 @@ class SceneManager:
         cast.clear_actors(RACKET2_GROUP)
         # x = CENTER_X - RACKET2_WIDTH / 2
         # y = SCREEN_HEIGHT - RACKET2_HEIGHT
-        x = SCREEN_WIDTH - RACKET2_WIDTH / 2
+        x = SCREEN_WIDTH - RACKET2_WIDTH - HUD_MARGIN
         y = CENTER_Y - RACKET2_HEIGHT / 2
         position = Point(x, y)
         size = Point(RACKET2_WIDTH, RACKET2_HEIGHT)

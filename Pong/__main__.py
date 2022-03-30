@@ -1,6 +1,6 @@
 from constants import *
 from game.directing.director import Director
-from game.directing.scene_manager1 import SceneManager
+from game.directing.scene_manager import SceneManager
 
 
 def main():

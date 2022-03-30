@@ -50,7 +50,9 @@ PAUSE = "p"
 # SCENES
 NEW_GAME = 0
 TRY_AGAIN = 1
-# NEXT_LEVEL = 2
+NEXT_LEVEL = 2
+# IN_PLAY = 2
+# GAME_OVER = 3
 IN_PLAY = 3
 GAME_OVER = 4
 
@@ -82,6 +84,7 @@ MAXIMUM_LIVES = 5
 
 # HUD
 HUD_MARGIN = 15
+SCORE2_MARGIN = 150
 # LIVES_GROUP = "lives"
 # LIVES_FORMAT = "LIVES: {}"
 SCORE1_GROUP = "score1"
@@ -98,7 +101,7 @@ BALL_VELOCITY = 6
 
 # RACKET1
 RACKET1_GROUP = "racket1"
-RACKET1_IMAGES = [f"../Pong/assets/images/{n:03}.png" for n in range(100, 103)]
+RACKET1_IMAGES = [f"../Pong/assets/images/{n:03}.png" for n in range(103, 106)]
 RACKET1_WIDTH = 28 # 106
 RACKET1_HEIGHT = 106 # 28
 RACKET1_RATE = 6
@@ -106,7 +109,7 @@ RACKET1_VELOCITY = 7
 
 # RACKET2
 RACKET2_GROUP = "racket2"
-RACKET2_IMAGES = [f"../Pong/assets/images/{n:03}.png" for n in range(100, 103)]
+RACKET2_IMAGES = [f"../Pong/assets/images/{n:03}.png" for n in range(106, 109)]
 RACKET2_WIDTH = 28 # 106
 RACKET2_HEIGHT = 106 # 28
 RACKET2_RATE = 6

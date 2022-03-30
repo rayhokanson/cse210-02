@@ -35,7 +35,11 @@ class Stats(Actor):
         Returns:
             A number representing the score.
         """
-        return self._score
+        if player == 1:
+            return self._score1
+        elif player == 2:
+            return self._score1
+
 
     def reset(self):
         """Resets the stats back to their default values."""
