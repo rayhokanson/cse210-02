@@ -41,8 +41,12 @@ WHITE = Color(255, 255, 255)
 PURPLE = Color(255, 0, 255)
 
 # KEYS
-LEFT = "left"
-RIGHT = "right"
+# LEFT = "left"
+# RIGHT = "right"
+UP1 = "w"
+DOWN1 = "s"
+UP2 = "up"
+DOWN2 = "down"
 SPACE = "space"
 ENTER = "enter"
 PAUSE = "p"
