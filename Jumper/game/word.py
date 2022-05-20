@@ -6,7 +6,7 @@ class Word:
     def __init__(self):
         self.TerminalService = TerminalService()
         self._current_word = ""
-        self._words = ["crazy", "jumpy", "grape", "jokes", "water"]
+        self._words = ["anger", "apple", "beach", "earth", "avoid"]
         self.pick_a_word()
         self._word_guess = ["_"] * len(self._current_word)
 
